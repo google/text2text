@@ -1,4 +1,4 @@
-<h3>seqgen: Implementation of variants of Sequence to Sequence model:</h3>
+<h3>text2text: Implementation of variants of Sequence to Sequence model:</h3>
 
 Authors:
 
@@ -34,55 +34,55 @@ Install TensorFlow and Bazel.
 
 ```shell
 # cd to your workspace
-# 1. Clone the seqgen code to your workspace 'seqgen' directory.
+# 1. Clone the text2text code to your workspace 'text2text' directory.
 # 2. Create an empty 'WORKSPACE' file in your workspace.
 # 3. Preapre the config file wrt the model you wish to run and put it in the
 #    config directory.
 
 ls -R
 .:
-seqgen  WORKSPACE
+text2text  WORKSPACE
 
-./seqgen:
+./text2text:
 batch_reader  beam_search.py  BUILD  config  data  data.py  decode.py  
 __init__.py  library.py  main.py  metrics.py  model  README.md
 
-./seqgen/batch_reader:
+./text2text/batch_reader:
 copynet_batcher.py  __init__.py  vocab_batcher.py
 
-./seqgen/config:
+./text2text/config:
 cfg_copynet.py  cfg_seq2seq.py  cfg_bow2seq.py
  __init__.py 
 
-./seqgen/model:
+./text2text/model:
 copynet.py  __init__.py  seq2seq.py  bow2seq.py
 
-./seqgen/data:
+./text2text/data:
 data  data_convert_example.py  text_data  vocab
 
 
-bazel build -c opt --copt=-mavx --config=cuda seqgen:main
+bazel build -c opt --copt=-mavx --config=cuda text2text:main
 
 # Run the training.
-bazel-bin/seqgen/main \
+bazel-bin/text2text/main \
     --mode=train \
     --config="cfg_seq2seq" \
-    --log_root="seqgen/log_root" \
+    --log_root="text2text/log_root" \
     --override="eval_interval_secs=0" \
     --logtostderr
 
 # Run the eval. Try to avoid running on the same machine as training.
-bazel-bin/seqgen/main \
+bazel-bin/text2text/main \
     --mode=eval \
     --config="cfg_seq2seq" \
-    --log_root="seqgen/log_root" \
+    --log_root="text2text/log_root" \
     --logtostderr
 
 # Run the decode. Run it when the model is mostly converged.
-bazel-bin/seqgen/main \
+bazel-bin/text2text/main \
   --mode=decode \
     --config="cfg_seq2seq" \
-    --log_root="seqgen/log_root" \
+    --log_root="text2text/log_root" \
     --logtostderr
 ```
 
@@ -90,4 +90,4 @@ bazel-bin/seqgen/main \
  in which the model you wish to run, paths to data, and 
 hyperparameters of the model are specified. There are sample config files for 
 each models in config directory. The output of the code and summaries will be 
-written to a `seqgen/config_file_name` directory.
+written to a `text2text/config_file_name` directory.

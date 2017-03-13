@@ -169,7 +169,7 @@ class Model(object):
     """Graph for the model."""
     config = self._config
 
-    with tf.variable_scope('seqgen'):
+    with tf.variable_scope('text2text'):
       encoder_inputs = tf.unstack(self._encoder_inputs, axis=1)
       decoder_inputs = tf.unstack(self._decoder_inputs, axis=1)
       targets_gen = tf.unstack(self._targets_gen, axis=1)

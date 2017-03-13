@@ -22,10 +22,10 @@ from model.seq2seq import Model
 
 source_key = 'source'
 target_key = 'target'
-train_set = '/home/mdehgha1/tf/seqgen/data/data'
-valid_set = '/home/mdehgha1/tf/seqgen/data/data'
-input_vocab_file = '/home/mdehgha1/tf/seqgen/data/vocab'
-output_vocab_file = '/home/mdehgha1/tf/seqgen/data/vocab'
+train_set = 'data/data'
+valid_set = 'data/data'
+input_vocab_file = 'data/vocab'
+output_vocab_file = 'data/vocab'
 
 # Model settings
 max_run_steps = 50000  # Maximum number of run steps.

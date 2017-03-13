@@ -22,10 +22,10 @@ from model.bow2seq import Model
 
 source_key = 'source'
 target_key = 'target'
-train_set = ''
-valid_set = ''
-input_vocab_file = ''
-output_vocab_file = ''
+train_set = 'data/data'
+valid_set = 'data/data'
+input_vocab_file = 'data/vocab'
+output_vocab_file = 'data/vocab'
 
 # Model settings
 max_run_steps = 500000  # Maximum number of run steps.
