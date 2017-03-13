@@ -13,10 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-"""Sequence to Sequence model for text summarization.
-
-Implement "Abstractive Text Summarization using Sequence-to-sequence RNNS and
-Beyond."
+"""Sequence to Sequence model for text.
 
 """
 import importlib
