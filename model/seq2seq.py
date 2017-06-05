@@ -196,11 +196,11 @@ class Model(object):
 
       with tf.variable_scope('output'), tf.device(self._next_device()):
         model_outputs = []
-        for i in range(len(decoder_outputs)):
+        for i, _output in enumerate(decoder_outputs):
           if i > 0:
             tf.get_variable_scope().reuse_variables()
           model_outputs.append(
-              tf.nn.xw_plus_b(decoder_outputs[i],
+              tf.nn.xw_plus_b(_output,
                               tf.transpose(output_embedding), output_bias))
 
       if self._mode == 'decode':

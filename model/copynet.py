@@ -13,7 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-"""implementation of copynet.
+"""Implementation of copynet.
 
 Inspired by: "https://arxiv.org/abs/1603.06393"
 
@@ -208,15 +208,15 @@ class Model(object):
         emb_encoder_inputs_stacked = tf.stack(
             emb_encoder_inputs)  # [inp_len, batch_size, num_hidden]
 
-        for i in range(len(decoder_inputs)):
-          positions = -1 - decoder_inputs[i]  # [batch_size]
+        for i, _input in enumerate(decoder_inputs):
+          positions = -1 - _input  # [batch_size]
           positions = tf.minimum(
               tf.maximum(positions, 0), config.min_input_len - 1)
           indecies = tf.minimum(
-              tf.maximum(decoder_inputs[i], 0), output_vsize - 1)
+              tf.maximum(_input, 0), output_vsize - 1)
           emb_decoder_inputs.append(
               tf.where(
-                  decoder_inputs[i] < 0,  # if copy
+                  _input < 0,  # if copy
                   tf.transpose(
                       tf.matrix_diag_part(
                           tf.transpose(
@@ -304,12 +304,12 @@ class Model(object):
         copier_outputs = []
         is_copy_switch_outputs = []
 
-        for i in range(len(decoder_outputs)):
+        for i, _output in enumerate(decoder_outputs):
           if i > 0:
             tf.get_variable_scope().reuse_variables()
 
           # generation mode output [batch_size,vocab_size)
-          generator_outputs_i = tf.nn.xw_plus_b(decoder_outputs[i], w_generate,
+          generator_outputs_i = tf.nn.xw_plus_b(_output, w_generate,
                                                 v_generate)
 
           generator_outputs.append(generator_outputs_i)
@@ -326,12 +326,12 @@ class Model(object):
 
           copier_outputs.append(
               get_bilinearterm_cop(config, tmp_enc_top_states, w_copy,
-                                   decoder_outputs[i]))
+                                   _output))
 
           # switch output
           is_copy_switch_outputs.append(
               tf.sigmoid(
-                  tf.nn.xw_plus_b(decoder_outputs[i], w_switch, v_switch)))
+                  tf.nn.xw_plus_b(_output, w_switch, v_switch)))
 
       # If decoding, use argmax to get output in words
       if self._mode == 'decode':

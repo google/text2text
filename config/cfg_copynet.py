@@ -17,9 +17,6 @@
 
 """
 
-from batch_reader.copynet_batcher import Batcher
-from model.copynet import Model
-
 source_key = 'source'
 target_key = 'target'
 train_set = 'data/data'
