@@ -58,7 +58,7 @@ class DecodeIO(object):
     self._ref_file = None
     self._summary_file = None
 
-  def Write(self, source, targets, decode, bleu, rouge, f1, exact):
+  def Write(self, source, targets, decode, bleu, f1, exact):
     """Writes the target and decoded outputs to RKV files.
 
     Args:
@@ -219,15 +219,15 @@ class BeamSearch(object):
     output = ['None'] * len(dec_outputs)
 
     source_words = source.split()
-    for i in range(len(dec_outputs)):
-      if dec_outputs[i] < 0:  # it's from copier
-        position = -1 - dec_outputs[i]
+    for i, output in enumerate(dec_outputs):
+      if output < 0:  # it's from copier
+        position = -1 - output
         if position < len(source_words):
           output[i] = source_words[position]
         else:
           output[i] = '<out_of_bound>'
-      elif dec_outputs[i] >= 0:  # it's from generator or unk (if 0)
-        output[i] = data.Ids2Words([dec_outputs[i]], self._output_vocab)[0]
+      elif output >= 0:  # it's from generator or unk (if 0)
+        output[i] = data.Ids2Words([output], self._output_vocab)[0]
 
     source = source.replace(data.SENTENCE_START + ' ', '').replace(
         ' ' + data.SENTENCE_END, '')

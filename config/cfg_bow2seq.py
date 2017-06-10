@@ -17,9 +17,6 @@
 
 """
 
-from batch_reader.vocab_batcher import Batcher
-from model.bow2seq import Model
-
 source_key = 'source'
 target_key = 'target'
 train_set = 'data/data'

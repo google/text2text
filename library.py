@@ -200,8 +200,7 @@ def sampled_sequence_loss(inputs, targets, weights, loss_function,
     if average_across_batch:
       batch_size = tf.shape(targets[0])[0]
       return cost / tf.cast(batch_size, tf.float32)
-    else:
-      return cost
+    return cost
 
 
 def bow_loss(logits,
@@ -241,8 +240,7 @@ def bow_loss(logits,
   if average_across_batch:
     batch_size = targets[0].shape[0]
     return cost / tf.cast(batch_size, cost.dtype)
-  else:
-    return cost
+  return cost
 
 
 def bow_loss_by_example(logits,
@@ -414,8 +412,8 @@ def sequence_loss_by_example_cg(inputs_gen,
 
     log_perp_list = []
     for (inp_g, inp_c, target_g, target_c, is_copy_weight, weight) in zip(
-        inputs_gen, inputs_cop, targets_gen, targets_cop, is_copy_weights,
-        weights):
+            inputs_gen, inputs_cop, targets_gen, targets_cop, is_copy_weights,
+            weights):
       # loss of generator
       crossent_g = loss_function_g(target_g, inp_g)
       # loss of copier
@@ -523,5 +521,4 @@ def sequence_loss_cg(inputs_gen,
     if average_across_batch:
       batch_size = tf.shape(targets_gen[0])[0]
       return cost / tf.cast(batch_size, cost.dtype)  # tf.float32
-    else:
-      return cost
+    return cost

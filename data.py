@@ -52,21 +52,25 @@ class Vocab(object):
           raise ValueError('Too many words: >%d.' % max_size)
 
   def CheckVocab(self, word):
+    """Check if a word is in vocabulary"""
     if word not in self._word_to_id:
       return None
     return self._word_to_id[word]
 
   def WordToId(self, word):
+    """Return Id of the word"""
     if word not in self._word_to_id:
       return self._word_to_id[UNKNOWN_TOKEN]
     return self._word_to_id[word]
 
   def IdToWord(self, word_id):
+    """Return Word corresponding to an id in vocabulary"""
     if word_id not in self._id_to_word:
       raise ValueError('id not found in vocab: %d.' % word_id)
     return self._id_to_word[word_id]
 
   def NumIds(self):
+    """Total Ids"""
     return self._count
 
 
@@ -97,7 +101,8 @@ def ExampleGen(data_path, num_epochs=None):
       reader = open(f, 'rb')
       while True:
         len_bytes = reader.read(8)
-        if not len_bytes: break
+        if not len_bytes:
+          break
         str_len = struct.unpack('q', len_bytes)[0]
         example_str = struct.unpack('%ds' % str_len, reader.read(str_len))[0]
         yield example_pb2.Example.FromString(example_str)
@@ -153,12 +158,12 @@ def GetWordIds(text, vocab, pad_len=None, pad_id=None):
 
 
 def GetWordIndices(
-    target,
-    source,
-    vocab,
-    position_based_indexing,
-    pad_len=None,
-    pad_id=None,):
+        target,
+        source,
+        vocab,
+        position_based_indexing,
+        pad_len=None,
+        pad_id=None,):
   """Get index of any word of target in source.
 
   Assumes tokens separated by space.

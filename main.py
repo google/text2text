@@ -31,11 +31,11 @@ tf.app.flags.DEFINE_string('override', '', 'CSV hyper-parameter override string.
 
 # Mode to run in
 tf.app.flags.DEFINE_string('mode', 'train',
-                  'train/eval/decode  mode.')
+                           'train/eval/decode  mode.')
 
 # Where to save output
 tf.app.flags.DEFINE_string('log_root', 'log',
-                    'Directory for model root.')
+                           'Directory for model root.')
 tf.app.flags.DEFINE_integer('export_version', 0, 'Export version number.')
 
 # TF
@@ -206,7 +206,7 @@ def main(unused_argv):
       value = type(getattr(config, name))(argument.split('=')[1])
       setattr(config, name, value)
   config.input_vocab = data.Vocab(config.input_vocab_file,
-                                   config.max_vocab_size)  # Max IDs
+                                  config.max_vocab_size)  # Max IDs
   if config.input_vocab.WordToId(data.PAD_TOKEN) <= 0:
     raise ValueError('Invalid PAD_TOKEN id.')
   # id of the UNKNOWN_TOKEN should be "0" for copynet model

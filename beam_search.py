@@ -26,7 +26,7 @@ import tensorflow as tf
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_bool('normalize_by_length', True,
-                  'Whether normalize probability by length for decode outputs.')
+                         'Whether normalize probability by length for decode outputs.')
 
 
 class Hypothesis(object):
@@ -66,6 +66,7 @@ class Hypothesis(object):
 
   @property
   def latest_token(self):
+    """Get the latest token"""
     return self.tokens[-1]
 
   def __str__(self):
@@ -139,7 +140,7 @@ class BeamSearch(object):
           # Otherwise continue to the extend the hypothesis.
           hypothesis.append(h)
         if (len(hypothesis) == self._beam_size or
-            len(results) == self._beam_size):
+                len(results) == self._beam_size):
           break
 
       steps += 1
@@ -162,6 +163,5 @@ class BeamSearch(object):
     if FLAGS.normalize_by_length:
       return sorted(
           hypothesis, key=lambda h: h.log_prob / len(h.tokens), reverse=True)
-    else:
-      return sorted(
-          hypothesis, key=lambda h: h.log_prob, reverse=True)
+    return sorted(
+        hypothesis, key=lambda h: h.log_prob, reverse=True)
