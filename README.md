@@ -100,7 +100,8 @@ written to a `text2text/config_file_name` directory.
 If you use this code for your scientific work, please cite it as:
 
 ```
-Mostafa Dehghani, Sascha Rothe, Enrique Alfonseca, and Pascal Fleury. 2017. Learning to Attend, Copy, and Generate for Session-Based Query Suggestion. In Proceedings of the 2017 ACM on Conference on Information and Knowledge Management (CIKM '17). ACM, New York, NY, USA, 1747-1756. 
+Mostafa Dehghani, Sascha Rothe, Enrique Alfonseca, and Pascal Fleury. 2017. Learning to Attend, Copy, and Generate for Session-Based Query Suggestion.
+In Proceedings of the 2017 ACM on Conference on Information and Knowledge Management (CIKM '17). ACM, New York, NY, USA, 1747-1756. 
 ```
 
 ```
@@ -111,7 +112,5 @@ Mostafa Dehghani, Sascha Rothe, Enrique Alfonseca, and Pascal Fleury. 2017. Lear
  series = {CIKM '17},
  year = {2017},
  pages = {1747--1756}
-} 
-
 }
 ```
