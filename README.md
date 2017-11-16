@@ -3,7 +3,7 @@
 Authors:
 
 * Sascha Rothe (rothe@google.com ),
-* Mostafa Dehghani (mostafadehghani.com)
+* Mostafa Dehghani ([mostafadehghani.com](http://mostafadehghani.com/))
 
 <b>Introduction</b>
 
