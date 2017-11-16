@@ -3,7 +3,7 @@
 Authors:
 
 * Sascha Rothe (rothe@google.com ),
-* Mostafa Dehghani (github:mostafadehghani)
+* Mostafa Dehghani (mostafadehghani.com)
 
 <b>Introduction</b>
 
@@ -14,6 +14,7 @@ The code contains different implementations of sequence to sequence models:
 * Bag of Words to Sequence model:
 Inspired by [Order Matters: Sequence to sequence for sets](https://arxiv.org/abs/1511.06391)
 * Incorporating copy mechanism with Sequence to Sequence model:
+Similar to waht explained in [Learning to Attend, Copy, and Generate for Session-Based Query Suggestion](https://arxiv.org/abs/1708.03418)
 Inspired by [Incorporating Copying Mechanism in Sequence-to-Sequence Learning](https://arxiv.org/abs/1603.06393)
 
 
@@ -91,3 +92,26 @@ bazel-bin/text2text/main \
 hyperparameters of the model are specified. There are sample config files for 
 each models in config directory. The output of the code and summaries will be 
 written to a `text2text/config_file_name` directory.
+
+
+
+### Cite the paper
+---
+If you use this code for your scientific work, please cite it as:
+
+```
+Mostafa Dehghani, Sascha Rothe, Enrique Alfonseca, and Pascal Fleury. 2017. Learning to Attend, Copy, and Generate for Session-Based Query Suggestion. In Proceedings of the 2017 ACM on Conference on Information and Knowledge Management (CIKM '17). ACM, New York, NY, USA, 1747-1756. 
+```
+
+```
+@inproceedings{Dehghani:2017:LAC:3132847.3133010,
+ author = {Dehghani, Mostafa and Rothe, Sascha and Alfonseca, Enrique and Fleury, Pascal},
+ title = {Learning to Attend, Copy, and Generate for Session-Based Query Suggestion},
+ booktitle = {Proceedings of the 2017 ACM on Conference on Information and Knowledge Management},
+ series = {CIKM '17},
+ year = {2017},
+ pages = {1747--1756}
+} 
+
+}
+```
